@@ -1,0 +1,7 @@
+param r := 0.9871421;
+param amortyzacja := 10000.0;
+param gotowka := 370887.0;
+param max_kredyt := 160000.0;
+param max_produkcja := 400000.0;
+param k_staly := 5000.0;
+param zadluzenie := 296000.0;

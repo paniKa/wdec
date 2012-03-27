@@ -1,0 +1,22 @@
+option ampl_include '.\
+TABLES';
+
+model transp3.mod;
+
+table transOrig IN "ODBC" "TABLES/trans.mdb" "Orig": ORIG <- [ORIG], supply;
+table transDest IN "ODBC" "TABLES/trans.mdb" "Dest": DEST <- [DEST], demand;
+
+table transLinks IN "ODBC" "TABLES/trans.mdb" "Links": 
+   LINKS <- [ORIG,DEST], cost IN, Trans OUT;
+
+read table transOrig;
+read table transDest;
+read table transLinks;
+
+display supply;
+display demand;
+display cost;
+
+solve;
+
+write table transLinks;

@@ -1,0 +1,34 @@
+option ampl_include '.\
+TABLES';
+
+model steelT.mod;
+
+table T "ODBC" "TABLES/steel.xlsx": [], T IN;
+table Products IN "ODBC" "TABLES/steel.xlsx": [PROD] IN, rate, inv0, prodcost, invcost;
+table Periods IN "ODBC" "TABLES/steel.xlsx": [TIME], avail;
+
+table Plans IN "ODBC" "TABLES/steel.xlsx": 
+   [PROD, TIME], market IN, revenue IN;
+
+# Excel 2010 is unhappy with updating irregularly shaped tables.
+# We could proceed as in steel.xls.run once, but then would get
+# an error message if we ran this script a second time without
+# restoring steel.xlsx to its original state.  But there is no
+# problem with rewriting pure OUT tables, so this script is
+# repeatable without restoring steel.xlsx to its original state.
+
+table PlansOut OUT "ODBC" "TABLES/steel.xlsx": 
+   [PROD, TIME], market, revenue, Make, Sell, Inv;
+
+read table T;
+read table Products;
+read table Periods;
+read table Plans;
+
+display rate, inv0, prodcost, invcost;
+display avail;
+display market, revenue;
+
+solve;
+
+write table PlansOut;

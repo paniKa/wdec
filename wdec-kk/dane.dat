@@ -1,0 +1,43 @@
+#plik .dat
+
+param A:
+	1 2 3 4 :=
+1	0 0 -1 1	
+2	0 0 1 -1;
+
+param b:=
+1	-0.55
+2	-0.55;
+
+#sparametryciwane
+#param Aeq :
+#	1 2 3 4 5 6:=
+
+param beq:=
+1	-894.8
+2	-894.8
+3	-1294.8;
+
+#ograniczenie gorne
+param u:= 
+1	1200
+2	1200
+3	0.55
+4	0.55;
+
+#ograniczenie dolne
+param l:=
+1	0
+2	0
+3	-0.55
+4	-0.55;
+
+
+for{k in 1..4} {
+	for {i in 1..4} {
+		let x[i] := k*(i mod 2) + 3*k/5*i^2;
+	}
+	display _varname, _var;
+	solve;
+	display _varname, _var;
+}

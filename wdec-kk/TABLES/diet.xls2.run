@@ -1,0 +1,19 @@
+option ampl_include '.\
+TABLES';
+
+model diet.mod;
+
+table dietFoods IN "ODBC" "TABLES/diet.xls" "Foods": FOOD <- [FOOD], cost, f_min, f_max;
+table dietNutrs IN "ODBC" "TABLES/diet.xls" "Nutrients": NUTR <- [NUTR], n_min, n_max;
+table dietAmts IN "ODBC" "TABLES/diet.xls" "Amounts": [NUTR, FOOD], amt;
+
+read table dietFoods;
+read table dietNutrs;
+read table dietAmts;
+                  
+solve;
+
+table dietResults OUT "ODBC" "TABLES/diet.xls" "Foods":
+   [FOOD], cost IN, Buy, Buy.rc ~ BuyRC, {j in FOOD} Buy[j]/f_max[j] ~ BuyFrac;
+
+write table dietResults;

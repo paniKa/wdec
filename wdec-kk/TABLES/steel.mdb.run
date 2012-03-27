@@ -1,0 +1,24 @@
+option ampl_include '.\
+TABLES';
+
+model steelT.mod;
+
+table T "ODBC" "TABLES/steel.mdb": [], T IN;
+table Products IN "ODBC" "TABLES/steel.mdb": [PROD] IN, rate, inv0, prodcost, invcost;
+table Periods IN "ODBC" "TABLES/steel.mdb": [TIME], avail;
+
+table Plans "ODBC" "TABLES/steel.mdb": 
+   [PROD, TIME], market IN, revenue IN, Make OUT, Sell OUT, Inv OUT;
+
+read table T;
+read table Products;
+read table Periods;
+read table Plans;
+
+display rate, inv0, prodcost, invcost;
+display avail;
+display market, revenue;
+
+solve;
+
+write table Plans;

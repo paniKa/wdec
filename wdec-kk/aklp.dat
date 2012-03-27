@@ -1,0 +1,8 @@
+param r := 0.6; 
+param gotowka := 300000;
+param max_kredyt := 500000;
+param max_produkcja := 400000;
+param k_staly := 5000;
+param amortyzacja := 10000;
+param k_jedn_zm := 8;
+
