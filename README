@@ -1,1 +1,15 @@
 WDEC projekt
+
+1. Aby odpalić projekt WDEC-KK należy ściągnąć 
+http://sourceforge.net/projects/ojalgo/files/ojAlgo/snapshot/ojalgo-31.11.zip
+oraz
+http://sourceforge.net/projects/jfreechart/files/1.%20JFreeChart/1.0.14/jfreechart-1.0.14.zip
+
+i dodać do classpath projektu jar'y:
+
+z dystrybucji jfreechart
+  - jcommon-1.0.17.jar
+  - jfreechart-1.0.14.jar
+oraz z ojalgo
+  - ojalgo-31.11.jar
+  - ojalgo-ext-31.11.jar
